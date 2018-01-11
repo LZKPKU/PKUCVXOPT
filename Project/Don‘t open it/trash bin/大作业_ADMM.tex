@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{latexsym}
+\usepackage{mathrsfs}
+\usepackage{verbatim}
+\usepackage{listings}
+\usepackage{algorithm2e}
+
+
+\begin{document}
+	It's difficult to solve the primal problem directly, so we use this transformation.
+	
+	\[\begin{split}\min\limits_x&\quad c^Tx\\
+	\text{s.t.}&\quad Ax=b\\
+	&\quad x = z\\
+	&\quad z\geq0\end{split}
+	\]
+	
+	$x = (\pi_{11},\pi_{12},...,\pi_{mn})$ is a m*n column vector, $b = (\mu_1,\mu_2,...,\mu_m,\upsilon_1,\upsilon_2,...,\upsilon_n)$ is a m+n column vector.
+	
+	A has the following form:
+	\[\left[\begin{matrix}
+		1_n&0&\cdots&0\\
+		0&1_n&\cdots&0\\
+		\vdots&\vdots&\ddots&\vdots\\
+		0&0&\cdots&1_n\\
+		e_1&e_1&\cdots&e_1\\
+		e_2&e_2&\cdots&e_2\\
+		\vdots&\vdots&\ddots&\vdots\\
+			e_n&e_n&\cdots&e_n\\
+		
+	\end{matrix}\right]\]
+	where $1_n$ is a n-dimension row vector with all one, and $e_i$ means n-dimension row unit vector whose i-th element is one while the others are zeros. We have m $1_n$s and $e_i$s. So A is (m+n)*(mn) matrix.
+	
+	The augmented Lagrangian function of the problem above is:
+	\[\mathcal{L}_\rho(x,z,\lambda,\mu)=c^Tx+\lambda^T(Ax-b)+\mu^T(x-z)+\frac{\rho}{2}||Ax-b||^2_2+\frac{\rho}{2}||z-x||^2_2\]
+	
+	Using ADMM to solve this problem, we have the following iteration method:
+	\[x^{k+1} =\mathop{ \text{argmin}}\limits_x\mathcal{L}_\rho(x,z^k,\lambda^k,\mu^k)\]
+	\[z^{k+1} =\mathop{ \text{argmin}}\limits_{z\geq0}\mathcal{L}_\rho(x^{k+1},z,\lambda^k,\mu^k)\]
+	\[\lambda^{k+1}=\lambda^k+\rho(Ax^{k+1}-b)\]
+	\[\mu^{k+1}=\mu^k+\rho(z^{k+1}-x^{k+1})\]
+	
+	To be more specific, by FOC we have:
+	\[\frac{\partial{\mathcal{L}}}{\partial{x}}=c+A^T\lambda+\mu+\rho(A^TAx-A^Tb)+\rho(x-z)=0\]
+	
+	\[x^{k+1}=\frac{1}{\rho}(A^TA+I)^{-1}(\rho z^k+{\rho}A^Tb-c-A^T\lambda^k-\mu^k)\]
+	
+	\[z^{k+1}=\mathop{\text{argmin}}\limits_{z\geq0} \frac{\rho}{2}||z-x||^2_2-\mu^Tz\]
+	
+	\[\frac{\partial{\mathcal{L}}}{\partial{z}}=\rho z-\rho x-\mu\]
+	
+	\[z=x-\frac{\mu}{\rho}\]
+	
+	with constraint $z\geq0$, So we have the final result:
+	
+	\[z^{k+1}_i=\left \{\begin{aligned}
+	& x_i^{k+1}-\frac{\mu_i^k}{\rho},&\text{if}\quad x_i^{k+1}-\frac{\mu_i^k}{\rho}\geq0&\\
+	& 0 ,&\text{o.w.}
+	\end{aligned}
+	\right. \]
+	
+	
+\end{document}

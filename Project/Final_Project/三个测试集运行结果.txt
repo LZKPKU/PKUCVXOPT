@@ -1,0 +1,37 @@
+  
+test1:
+  optval: 6.2632
+  Call LP_ALM_SG : cpu:  0.28, err to CVX Call Gurobi: 6.96e-12
+  Call LP_ALM_SG : constraints: 1.41e-20, number of iterations: 7084
+  Call LP_ALM_NCG : cpu:  0.02, err to CVX Call Gurobi: 4.13e-13
+  Call LP_ALM_NCG : constraints: 4.78e-23, number of iterations: 47
+  Call DRS : cpu:  0.10, err to CVX Call Gurobi: 6.27e-12
+  Call DRS : constraints: 4.81e-21, number of iterations: 12371
+  Call ADMM : cpu:  0.08, err to CVX Call Gurobi: 3.76e-12
+  Call ADMM : constraints: 9.64e-21, number of iterations: 2382
+  Call SNM : cpu:  3.11, err to CVX Call Gurobi: 4.90e-12
+  Call SNM : constraints: 8.26e-21, number of iterations: 10103
+test2:
+  optval: -25.7585
+  Call LP_ALM_SG : cpu:  0.26, err to CVX Call Gurobi: 2.11e-14
+  Call LP_ALM_SG : constraints: 6.17e-24, number of iterations: 7438
+  Call LP_ALM_NCG : cpu:  0.01, err to CVX Call Gurobi: 1.89e-13
+  Call LP_ALM_NCG : constraints: 4.48e-23, number of iterations: 31
+  Call DRS : cpu:  0.03, err to CVX Call Gurobi: 2.54e-14
+  Call DRS : constraints: 3.88e-24, number of iterations: 3283
+  Call ADMM : cpu:  0.05, err to CVX Call Gurobi: 1.00e-12
+  Call ADMM : constraints: 6.03e-21, number of iterations: 1247
+  Call SNM : cpu:  2.37, err to CVX Call Gurobi: 1.17e-12
+  Call SNM : constraints: 8.13e-21, number of iterations: 7742
+test3:
+  optval: 28.6757
+  Call LP_ALM_SG : cpu:  0.21, err to CVX Call Gurobi: 1.25e-12
+  Call LP_ALM_SG : constraints: 3.59e-21, number of iterations: 5643
+  Call LP_ALM_NCG : cpu:  0.01, err to CVX Call Gurobi: 4.93e-04
+  Call LP_ALM_NCG : constraints: 3.25e-21, number of iterations: 39
+  Call DRS : cpu:  0.14, err to CVX Call Gurobi: 1.62e-12
+  Call DRS : constraints: 1.80e-21, number of iterations: 16471
+  Call ADMM : cpu:  0.23, err to CVX Call Gurobi: 1.18e-12
+  Call ADMM : constraints: 9.45e-22, number of iterations: 6768
+  Call SNM : cpu:  3.56, err to CVX Call Gurobi: 3.19e-13
+  Call SNM : constraints: 2.67e-21, number of iterations: 11643
